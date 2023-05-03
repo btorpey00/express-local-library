@@ -9,10 +9,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+require('dotenv').config();
+
 const mongoose= require('mongoose');
 const { mainModule } = require('process');
 mongoose.set('strictQuery', false);
-const mongoDB = 'mongodb+srv://brianstorpey:GJQdKmeMwwJW9y@cluster0.e8tf3kf.mongodb.net/local_library?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://'+ process.env.USER_NAME + ':' + process.env.SECRET_KEY + '@cluster0.e8tf3kf.mongodb.net/local_library?retryWrites=true&w=majority';
 
 main().catch((err) => console.log(err));
 async function main() {
