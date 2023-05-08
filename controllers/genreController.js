@@ -124,14 +124,16 @@ exports.genre_update_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
-        const genre = new Genre({ name: req.body.name });
+        const genre = new Genre({ 
+            name: req.body.name,
+            _id: req.params.id,
+        });
 
         if (!errors.isEmpty()) {
             res.render('genre_form', {
                 title: 'Update Genre',
                 genre: genre,
                 errors: errors.array(),
-                _id: req.params.id,
             });
             return;
         } else {
